@@ -25,14 +25,16 @@ start, end = 21, 22
 with open('data.json', 'r') as f:
     lines = json.load(f)
 
+pointList = []
 
-# print 'number of lines'
-# print '---------------'
-# print len(lines)
+for k, v in lines.items():
+    subList = []
+    subList.append(v["pt0"])
+    subList.append(v["pt1"])
+    pointList.append(subList)
 
 
-#network = Network.from_obj(compas.get('grid_irregular.obj'))
-network = Network.from_lines(lines)
+network = Network.from_lines(pointList)
 
 # construc an adjacency dict
 # add weight to the edges corresponding to their length
