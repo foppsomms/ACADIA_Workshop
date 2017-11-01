@@ -36,17 +36,16 @@ for k, v in lines.items():
 
 network = Network.from_lines(pointList)
 
-print (network)
-
 adjacency = {key: network.vertex_neighbours(key) for key in network.vertices()}
 
 weight = {(u, v): network.edge_length(u, v) for u, v in network.edges()}
 weight.update({(v, u): weight[(u, v)] for u, v in network.edges()})
 
 path = dijkstra_path(adjacency, weight, start, end)
+
 # # visualize the result
 
-plotter = NetworkPlotter(network, figsize=(10, 8), fontsize=8)
+plotter = NetworkPlotter(network, figsize=(20, 16), fontsize=8)
 
 edges = []
 for u, v in pairwise(path):
@@ -57,7 +56,7 @@ for u, v in pairwise(path):
 plotter.draw_vertices(
     text={key: key for key in (start, end)},
     facecolor={key: '#ff0000' for key in (path[0], path[-1])},
-    radius=1
+    radius=0.15
 )
 
 plotter.draw_edges(
